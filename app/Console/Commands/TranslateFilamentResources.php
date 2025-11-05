@@ -62,7 +62,7 @@ class TranslateFilamentResources extends Command
     private function updateResource($resourceName, $translations)
     {
         $path = app_path("Filament/Resources/{$resourceName}.php");
-        
+
         if (!File::exists($path)) {
             $this->warn("⚠️  File not found: {$resourceName}");
             return;
@@ -79,13 +79,13 @@ class TranslateFilamentResources extends Command
         // Find and replace the navigation label pattern
         $pattern = "/(protected static \?string \$navigationLabel = '[^']+';)/";
         $replacement = "public static function getNavigationLabel(): string\n    {\n        return __('filament.{$translations['navigationLabel']}');\n    }";
-        
+
         $content = preg_replace($pattern, $replacement, $content);
 
         // Find and replace the navigation group pattern
         $pattern = "/(protected static \?string \$navigationGroup = '[^']+';)/";
         $replacement = "public static function getNavigationGroup(): ?string\n    {\n        return __('filament.{$translations['navigationGroup']}');\n    }";
-        
+
         $content = preg_replace($pattern, $replacement, $content);
 
         File::put($path, $content);
