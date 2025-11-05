@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class HeroSection extends Model
+{
+    protected $fillable = [
+        'locale',
+        'title',
+        'subtitle',
+        'primary_button_text',
+        'primary_button_url',
+        'secondary_button_text',
+        'secondary_button_url',
+        'order',
+        'is_active',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
+        'order' => 'integer',
+    ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
+    public function scopeForLocale($query, $locale)
+    {
+        return $query->where('locale', $locale);
+    }
+
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('order');
+    }
+}

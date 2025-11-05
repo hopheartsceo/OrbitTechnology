@@ -1,0 +1,164 @@
+{
+    "site_title": "Orbit Technology - SMS Services",
+    "site_description": "Orbit Technology - Authorized SMS service provider in Saudi Arabia. Licensed by CITC and approved by Noor educational system",
+    "logo_text": "Orbit Technology",
+    "nav": {
+        "home": "Home",
+        "services": "Services",
+        "pricing": "Pricing",
+        "contact": "Contact",
+        "login": "Login"
+    },
+    "hero": {
+        "title": "Orbit Technology SMS Services",
+        "subtitle": "Authorized provider by CITC and approved by Noor system - We provide bulk SMS solutions with competitive prices and high quality",
+        "btn_register": "Sign Up",
+        "btn_calculate": "Calculate Prices"
+    },
+    "why_us": {
+        "title": "Why Orbit Technology?",
+        "subtitle": "We provide the best SMS services in the Kingdom with exceptional features",
+        "features": {
+            "licensed": {
+                "title": "Officially Licensed",
+                "description": "Licensed by Communications and Information Technology Commission and approved by Noor educational system"
+            },
+            "instant": {
+                "title": "Instant Delivery",
+                "description": "Send messages with ultra-fast speed and guaranteed delivery on time"
+            },
+            "reports": {
+                "title": "Detailed Reports",
+                "description": "Get comprehensive reports on message status and delivery rates"
+            },
+            "support": {
+                "title": "Premium Support",
+                "description": "Professional technical support team available 24/7"
+            },
+            "pricing": {
+                "title": "Competitive Pricing",
+                "description": "Best prices in the market with bulk discounts"
+            },
+            "api": {
+                "title": "Integrated API",
+                "description": "Easy API for integration with your existing systems"
+            }
+        }
+    },
+    "services": {
+        "title": "Our Premium Services",
+        "subtitle": "Comprehensive SMS solutions for all your needs",
+        "items": {
+            "bulk_sms": {
+                "title": "Bulk SMS",
+                "description": "Send bulk text messages to thousands of recipients in seconds"
+            },
+            "enterprise": {
+                "title": "Enterprise Solutions",
+                "description": "Customized services for government and private organizations"
+            },
+            "noor": {
+                "title": "Noor Educational System",
+                "description": "Approved provider for Noor system messages for schools and universities"
+            },
+            "marketing": {
+                "title": "Digital Marketing",
+                "description": "Effective marketing campaigns via text messages"
+            },
+            "alerts": {
+                "title": "Alerts & Notifications",
+                "description": "Send important alerts and notifications to your customers"
+            },
+            "otp": {
+                "title": "OTP Verification Codes",
+                "description": "Send security verification codes for your applications"
+            }
+        }
+    },
+    "pricing": {
+        "title": "Transparent & Competitive Pricing",
+        "subtitle": "All prices include VAT",
+        "tiers": [
+            {"range": "1 - 2,999", "price": "11", "label": "messages"},
+            {"range": "3,000 - 4,999", "price": "10.3", "label": "messages"},
+            {"range": "5,000 - 9,999", "price": "9.78", "label": "messages"},
+            {"range": "10,000 - 19,999", "price": "8.63", "label": "messages"},
+            {"range": "20,000 - 49,999", "price": "8.05", "label": "messages"},
+            {"range": "50,000 - 99,999", "price": "7.47", "label": "messages"},
+            {"range": "100,000 - 499,999", "price": "6.9", "label": "messages"},
+            {"range": "500,000+", "price": "Contact Us", "label": "special pricing"}
+        ],
+        "per_message": "cents per message",
+        "from": "From",
+        "to": "to",
+        "messages": "messages",
+        "btn_calculator": "Price Calculator",
+        "special_price": "Special Pricing",
+        "contact_us": "Contact Us"
+    },
+    "trust": {
+        "title": "Trust & Accreditation",
+        "subtitle": "Accredited by the most important government agencies in the Kingdom",
+        "badges": {
+            "citc": "Licensed by Communications\nand IT Commission",
+            "noor": "Approved Provider\nfor Noor System",
+            "moe": "Trusted by\nMinistry of Education"
+        }
+    },
+    "trusted_customers": {
+        "title": "Our Trusted Customers",
+        "subtitle": "Proudly serving 500+ clients from government and private sectors",
+        "stats": {
+            "customers": {
+                "number": "500+",
+                "label": "Clients"
+            },
+            "messages": {
+                "number": "10M+",
+                "label": "Monthly Messages"
+            },
+            "success": {
+                "number": "99.9%",
+                "label": "Success Rate"
+            },
+            "response": {
+                "number": "< 2s",
+                "label": "Response Time"
+            }
+        },
+        "sectors": {
+            "education": "Education",
+            "healthcare": "Healthcare",
+            "banking": "Banking",
+            "retail": "Retail",
+            "government": "Government",
+            "logistics": "Logistics"
+        }
+    },
+    "contact": {
+        "title": "Contact Us",
+        "subtitle": "We're here to serve you and answer all your inquiries",
+        "phone": {
+            "title": "Unified Number",
+            "number": "920006900"
+        },
+        "email": {
+            "title": "Email",
+            "address": "info@ot.com.sa"
+        },
+        "location": {
+            "title": "Location",
+            "address": "Kingdom of Saudi Arabia"
+        }
+    },
+    "footer": {
+        "links": {
+            "home": "Home",
+            "services": "Services",
+            "pricing": "Pricing",
+            "regulations": "Regulations",
+            "contact": "Contact"
+        },
+        "copyright": "All Rights Reserved - Orbit Technology"
+    }
+}
