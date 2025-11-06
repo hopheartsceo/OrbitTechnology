@@ -16,7 +16,15 @@ use App\Models\{
     TrustBadge,
     ContactInfo,
     SeoSetting,
-    SystemSetting
+    SystemSetting,
+    AboutSection,
+    MissionVision,
+    CoreValue,
+    LogoIdentity,
+    ColorPalette,
+    Typography,
+    VisualStyle,
+    StrategyApplication
 };
 
 class LandingPageController extends Controller
@@ -43,6 +51,16 @@ class LandingPageController extends Controller
         $sectors = Sector::forLocale($locale)->active()->ordered()->get();
         $trustBadges = TrustBadge::forLocale($locale)->active()->ordered()->get();
         $contactInfos = ContactInfo::forLocale($locale)->active()->ordered()->get();
+
+        // Fetch ORBIT Brand Content
+        $about = AboutSection::byLocale($locale)->active()->ordered()->first();
+        $missionVision = MissionVision::byLocale($locale)->active()->first();
+        $coreValues = CoreValue::byLocale($locale)->active()->ordered()->get();
+        $logoIdentity = LogoIdentity::byLocale($locale)->active()->first();
+        $colorPalette = ColorPalette::byLocale($locale)->active()->ordered()->get();
+        $typography = Typography::byLocale($locale)->active()->ordered()->get();
+        $visualStyle = VisualStyle::byLocale($locale)->active()->ordered()->first();
+        $strategyApps = StrategyApplication::byLocale($locale)->active()->ordered()->get();
 
         // Fetch SEO settings for this page
         $seo = SeoSetting::getForPage('landing', $locale);
@@ -74,6 +92,16 @@ class LandingPageController extends Controller
                 'sectors' => $sectors,
                 'trustBadges' => $trustBadges,
                 'contactInfos' => $contactInfos,
+            ],
+            'orbit' => [
+                'about' => $about,
+                'missionVision' => $missionVision,
+                'coreValues' => $coreValues,
+                'logoIdentity' => $logoIdentity,
+                'colorPalette' => $colorPalette,
+                'typography' => $typography,
+                'visualStyle' => $visualStyle,
+                'strategyApps' => $strategyApps,
             ],
             'seo' => $seo,
             'settings' => $systemSettings,

@@ -19,16 +19,16 @@ class HeroSectionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-star';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 1;
 
     public static function getNavigationLabel(): string
     {
-        return __('filament.resources.hero_section');
+        return __('filament.resources.hero_sections');
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return __('filament.navigation.landing_page');
+        return __('filament.navigation.content');
     }
 
     public static function getModelLabel(): string
@@ -36,75 +36,82 @@ class HeroSectionResource extends Resource
         return __('filament.resources.hero_section');
     }
 
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament.resources.hero_sections');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Basic Information')
+                Forms\Components\Section::make(__('filament.sections.basic_info'))
                     ->schema([
                         Forms\Components\Select::make('locale')
-                            ->label('Language')
+                            ->label(__('filament.fields.locale'))
                             ->options([
-                                'en' => '🇬🇧 English',
-                                'ar' => '🇸🇦 Arabic',
+                                'en' => __('filament.fields.locale_en'),
+                                'ar' => __('filament.fields.locale_ar'),
                             ])
                             ->required()
-                            ->default('en'),
+                            ->default('en')
+                            ->helperText(__('filament.helpers.locale'))
+                            ->native(false),
                         Forms\Components\TextInput::make('order')
-                            ->label('Display Order')
+                            ->label(__('filament.fields.order'))
                             ->numeric()
                             ->default(0)
                             ->minValue(0)
-                            ->helperText('Lower numbers appear first'),
+                            ->helperText(__('filament.helpers.order'))
+                            ->required(),
                         Forms\Components\Toggle::make('is_active')
-                            ->label('Active')
+                            ->label(__('filament.fields.is_active'))
                             ->default(true)
-                            ->helperText('Show this hero section'),
+                            ->helperText(__('filament.helpers.is_active'))
+                            ->inline(false),
                     ])
                     ->columns(3)
                     ->collapsible(),
 
-                Forms\Components\Section::make('Hero Content')
+                Forms\Components\Section::make(__('filament.sections.hero_content'))
                     ->schema([
                         Forms\Components\TextInput::make('title')
-                            ->label('Headline')
+                            ->label(__('filament.labels.headline'))
                             ->required()
                             ->maxLength(255)
-                            ->placeholder('Transform Your Business with AI'),
+                            ->placeholder(__('filament.placeholders.title'))
+                            ->columnSpanFull(),
                         Forms\Components\Textarea::make('subtitle')
-                            ->label('Subheadline')
+                            ->label(__('filament.labels.subheadline'))
                             ->required()
                             ->rows(3)
-                            ->placeholder('Discover how our solutions can help you grow')
+                            ->placeholder(__('filament.placeholders.subtitle'))
                             ->columnSpanFull(),
                     ])
                     ->collapsible(),
 
-                Forms\Components\Section::make('Call-to-Action Buttons')
+                Forms\Components\Section::make(__('filament.sections.cta_buttons'))
                     ->schema([
                         Forms\Components\TextInput::make('primary_button_text')
-                            ->label('Primary Button Text')
+                            ->label(__('filament.labels.primary_button') . ' - ' . __('filament.labels.button_text'))
                             ->required()
                             ->maxLength(255)
                             ->default('Start Now')
-                            ->placeholder('Get Started'),
+                            ->placeholder(__('filament.placeholders.text')),
                         Forms\Components\TextInput::make('primary_button_url')
-                            ->label('Primary Button URL')
+                            ->label(__('filament.labels.primary_button') . ' - ' . __('filament.labels.button_url'))
                             ->maxLength(255)
-                            ->placeholder('#contact')
-                            ->helperText('Link or anchor (e.g., #contact)'),
+                            ->placeholder(__('filament.placeholders.anchor'))
+                            ->helperText(__('filament.helpers.url_format')),
                         Forms\Components\TextInput::make('secondary_button_text')
-                            ->label('Secondary Button Text')
-                            ->required()
+                            ->label(__('filament.labels.secondary_button') . ' - ' . __('filament.labels.button_text'))
                             ->maxLength(255)
-                            ->default('View Pricing')
-                            ->placeholder('Learn More'),
+                            ->placeholder(__('filament.placeholders.text')),
                         Forms\Components\TextInput::make('secondary_button_url')
-                            ->label('Secondary Button URL')
-                            ->required()
+                            ->label(__('filament.labels.secondary_button') . ' - ' . __('filament.labels.button_url'))
                             ->maxLength(255)
-                            ->default('#pricing')
-                            ->placeholder('#pricing'),
+                            ->placeholder(__('filament.placeholders.anchor'))
+                            ->helperText(__('filament.helpers.url_format')),
                     ])
                     ->columns(2)
                     ->collapsible(),
@@ -115,8 +122,15 @@ class HeroSectionResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('order')
+                    ->label(__('filament.fields.order'))
+                    ->numeric()
+                    ->sortable()
+                    ->badge()
+                    ->color('warning')
+                    ->alignCenter(),
                 Tables\Columns\BadgeColumn::make('locale')
-                    ->label('Language')
+                    ->label(__('filament.fields.locale'))
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         'en' => '🇬🇧 EN',
                         'ar' => '🇸🇦 AR',
@@ -126,37 +140,43 @@ class HeroSectionResource extends Resource
                         'primary' => 'en',
                         'success' => 'ar',
                     ])
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('title')
-                    ->label('Headline')
-                    ->searchable()
-                    ->limit(40)
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('order')
-                    ->label('Order')
-                    ->numeric()
                     ->sortable()
-                    ->badge()
-                    ->color('warning'),
+                    ->alignCenter(),
+                Tables\Columns\TextColumn::make('title')
+                    ->label(__('filament.labels.headline'))
+                    ->searchable()
+                    ->limit(50)
+                    ->sortable()
+                    ->wrap(),
+                Tables\Columns\TextColumn::make('subtitle')
+                    ->label(__('filament.labels.subheadline'))
+                    ->limit(40)
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->wrap(),
                 Tables\Columns\IconColumn::make('is_active')
-                    ->label('Active')
+                    ->label(__('filament.fields.is_active'))
                     ->boolean()
-                    ->sortable(),
+                    ->sortable()
+                    ->alignCenter(),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Last Updated')
-                    ->dateTime('M d, Y')
+                    ->label(__('filament.labels.last_updated'))
+                    ->dateTime('M d, Y H:i')
                     ->sortable()
                     ->toggleable(),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('locale')
-                    ->label('Language')
+                    ->label(__('filament.fields.locale'))
                     ->options([
-                        'en' => 'English',
-                        'ar' => 'Arabic',
-                    ]),
+                        'en' => __('filament.languages.en'),
+                        'ar' => __('filament.languages.ar'),
+                    ])
+                    ->native(false),
                 Tables\Filters\TernaryFilter::make('is_active')
-                    ->label('Active Status'),
+                    ->label(__('filament.labels.active_status'))
+                    ->placeholder(__('filament.filters.all_settings'))
+                    ->trueLabel(__('filament.filters.active_only'))
+                    ->falseLabel(__('filament.filters.inactive_only')),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -166,13 +186,13 @@ class HeroSectionResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                     Tables\Actions\BulkAction::make('activate')
-                        ->label('Activate')
+                        ->label(__('filament.actions.activate'))
                         ->icon('heroicon-o-check-circle')
                         ->action(fn ($records) => $records->each->update(['is_active' => true]))
                         ->deselectRecordsAfterCompletion()
                         ->color('success'),
                     Tables\Actions\BulkAction::make('deactivate')
-                        ->label('Deactivate')
+                        ->label(__('filament.actions.deactivate'))
                         ->icon('heroicon-o-x-circle')
                         ->action(fn ($records) => $records->each->update(['is_active' => false]))
                         ->deselectRecordsAfterCompletion()

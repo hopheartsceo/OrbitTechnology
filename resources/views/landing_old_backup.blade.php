@@ -64,25 +64,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- ORBIT font system: Botera (display) + Montserrat (body) + Somar (Arabic) with Google-font fallbacks -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Small override variables to ensure this page uses the ORBIT stacks (will be picked up by existing rules) -->
-    <style>
-        :root {
-            --font-display: 'Botera', 'Playfair Display', 'Cormorant Garamond', serif;
-            --font-sans: 'Montserrat', 'Gotham', 'Poppins', -apple-system, sans-serif;
-            --font-ar: 'Somar', 'Tajawal', 'Noto Kufi Arabic', sans-serif;
-            --font-serif: var(--font-display);
-            --font-body: var(--font-sans);
-        }
-
-        /* Force headings and body to use the ORBIT stacks for immediate visual verification.
-           These use !important as a non-destructive, temporary override so you can confirm
-           the brand fonts are applied even if a different global stylesheet loads later. */
-        html, body { font-family: var(--font-sans) !important; }
-        h1, h2, h3, h4, h5, h6 { font-family: var(--font-display) !important; }
-    </style>
+    <!-- Load Inter + Cairo + Tajawal fonts for better Arabic & Latin typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Preload Cairo specifically to improve Arabic text rendering (critical headings) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" as="style" onload="this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet"></noscript>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
